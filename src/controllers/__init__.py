@@ -1,0 +1,3 @@
+from .ProductoController import producto_controller
+from .TamanoController import tamano_controller
+from .CustomerController import customer_controller

@@ -1,0 +1,45 @@
+-- reposteriabd.customers definition
+
+CREATE TABLE `customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- reposteriabd.productos definition
+
+CREATE TABLE `productos` (
+  `idProducto` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` varchar(100) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`idProducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- reposteriabd.tamano definition
+
+CREATE TABLE `tamano` (
+  `idPorcion` int(11) NOT NULL AUTO_INCREMENT,
+  `tamano` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `porcion` varchar(30) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`idPorcion`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- reposteriabd.costoportamano definition
+
+CREATE TABLE `costoportamano` (
+  `idProdPorc` int(10) NOT NULL AUTO_INCREMENT,
+  `costo` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`idProdPorc`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- reposteriabd.tamanosporproducto definition
+
+CREATE TABLE `tamanosporproducto` (
+  `idTamano` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  PRIMARY KEY (`idTamano`,`idProducto`),
+  KEY `idProducto` (`idProducto`),
+  CONSTRAINT `tamanosporproducto_ibfk_1` FOREIGN KEY (`idTamano`) REFERENCES `tamano` (`idPorcion`),
+  CONSTRAINT `tamanosporproducto_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `productos` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
